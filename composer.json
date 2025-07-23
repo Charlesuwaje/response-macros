@@ -3,7 +3,7 @@
     "name": "charlesuwaje/response-macros-app",
 
     "type": "library",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Standard API response macros for Laravel.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "repositories": [
