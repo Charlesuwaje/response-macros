@@ -2,9 +2,9 @@
 
 namespace CharlesUwaje\ResponseMacros\Providers;
 
-
 use Illuminate\Support\ServiceProvider;
 use CharlesUwaje\ResponseMacros\Helpers\ResponseMacro;
+use Illuminate\Support\Facades\Response;
 
 class ResponseMacrosServiceProvider extends ServiceProvider
 {
@@ -13,8 +13,13 @@ class ResponseMacrosServiceProvider extends ServiceProvider
         ResponseMacro::register();
     }
 
-    public function register(): void
+
+    protected function registerMacros(): void
     {
-        //
+        ResponseMacro::register();
     }
+    // public function boot(): void
+    // {
+    //     $this->registerMacros();
+    // }
 }
