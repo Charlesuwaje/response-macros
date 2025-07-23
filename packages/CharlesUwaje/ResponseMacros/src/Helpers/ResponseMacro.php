@@ -93,16 +93,6 @@ class ResponseMacro
         Response::macro('noContent', function () {
             return response()->json(null, 204);
         });
-
-           //  No Content
-        Response::macro('ok', function (
-            string $message,
-            ?array $headers = []
-        ) {
-            return response()->json([
-                'status' => 'success',
-                'message' => $message,
-            ], SymfonyResponse::HTTP_OK, $headers);
-        });
+        
     }
 }
