@@ -13,7 +13,6 @@
       ],
     "require": {
         "php": "^8.2",
-        "charlesuwaje/response-macros": "@dev",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1"
     },
