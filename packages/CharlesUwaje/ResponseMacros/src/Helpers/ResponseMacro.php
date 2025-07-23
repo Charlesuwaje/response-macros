@@ -6,93 +6,178 @@ use Illuminate\Support\Facades\Response;
 
 class ResponseMacro
 {
-    public static function register(): void
-    {
-        //  Success Response
+//     public static function register(): void
+//     {
+//         //  Success Response
 
-        Response::macro('success', function (
-            string $message = 'Success',
-            array $data = [],
-            int $code = 200
-        ) {
+//         // Response::macro('success', function (
+//         //     string $message = 'Success',
+//         //     array $data = [],
+//         //     int $code = 200
+//         // ) {
+//         //     return response()->json([
+//         //         'status' => 'success',
+//         //         'message' => $message,
+//         //         'data' => $data,
+//         //     ], $code);
+//         // });
+//         Response::macro('success', function (array $data = [], string $message = 'Success', int $status = 200) {
+//             return response()->json([
+//                 'status' => 'success',
+//                 'message' => $message,
+//                 'data' => $data,
+//             ], $status);
+//         });
+
+//         // Error Response
+//         Response::macro('error', function (array $data = [], string $message = 'Error', int $status = 400) {
+//             return response()->json([
+//                 'status' => 'error',
+//                 'message' => $message,
+//                 'data' => $data,
+//             ], $status);
+//         });
+
+//         // Created Response
+//         Response::macro('created', function (
+//             string $message = 'Resource created successfully',
+//             array $data = []
+//         ) {
+//             return response()->json([
+//                 'status' => 'success',
+//                 'message' => $message,
+//                 'data' => $data,
+//             ], 201);
+//         });
+
+//         // Unauthorized Response
+//         Response::macro('unauthorized', function (
+//             string $message = 'Unauthorized'
+//         ) {
+//             return response()->json([
+//                 'status' => 'error',
+//                 'message' => $message,
+//             ], 401);
+//         });
+
+//         // Forbidden Response
+//         Response::macro('forbidden', function (
+//             string $message = 'Forbidden'
+//         ) {
+//             return response()->json([
+//                 'status' => 'error',
+//                 'message' => $message,
+//             ], 403);
+//         });
+
+//         //  Not Found Response
+//         Response::macro('notFound', function (
+//             string $message = 'Resource not found'
+//         ) {
+//             return response()->json([
+//                 'status' => 'error',
+//                 'message' => $message,
+//             ], 404);
+//         });
+
+//         //  Validation Error
+//         Response::macro('validationError', function (
+//             string $message = 'Validation failed',
+//             array $errors = []
+//         ) {
+//             return response()->json([
+//                 'status' => 'error',
+//                 'message' => $message,
+//                 'errors' => $errors,
+//             ], 422);
+//         });
+
+//         //  No Content
+//         Response::macro('noContent', function () {
+//             return response()->json(null, 204);
+//         });
+        
+//     }
+// }
+public static function register(): void
+    {
+        // Success Response
+        Response::macro('success', function (array $data = [], string $message = 'Success', int $status = 200) {
             return response()->json([
                 'status' => 'success',
                 'message' => $message,
                 'data' => $data,
-            ], $code);
+            ], $status);
         });
 
         // Error Response
-        Response::macro('error', function (
-            string $message = 'An error occurred',
-            int $code = 400,
-            array $errors = []
-        ) {
+        Response::macro('error', function (array $data = [], string $message = 'Error', int $status = 400) {
             return response()->json([
                 'status' => 'error',
                 'message' => $message,
-                'errors' => $errors,
-            ], $code);
+                'data' => $data,
+            ], $status);
         });
 
         // Created Response
-        Response::macro('created', function (
-            string $message = 'Resource created successfully',
-            array $data = []
-        ) {
+        Response::macro('created', function (array $data = [], string $message = 'Resource created successfully') {
             return response()->json([
-                'status' => 'success',
+                'status' => 'created',
                 'message' => $message,
                 'data' => $data,
             ], 201);
         });
 
         // Unauthorized Response
-        Response::macro('unauthorized', function (
-            string $message = 'Unauthorized'
-        ) {
+        Response::macro('unauthorized', function (array $data = [], string $message = 'Unauthorized') {
             return response()->json([
-                'status' => 'error',
+                'status' => 'unauthorized',
                 'message' => $message,
+                'data' => $data,
             ], 401);
         });
+        
 
         // Forbidden Response
-        Response::macro('forbidden', function (
-            string $message = 'Forbidden'
-        ) {
+        Response::macro('forbidden', function (array $data = [], string $message = 'Forbidden') {
             return response()->json([
-                'status' => 'error',
+                'status' => 'forbidden',
                 'message' => $message,
+                'data' => $data,
             ], 403);
         });
+        
 
-        //  Not Found Response
-        Response::macro('notFound', function (
-            string $message = 'Resource not found'
-        ) {
+        // Not Found Response
+        Response::macro('notFound', function (array $data = [], string $message = 'Not Found') {
             return response()->json([
-                'status' => 'error',
+                'status' => 'notFound',
                 'message' => $message,
+                'data' => $data,
             ], 404);
         });
+        
 
-        //  Validation Error
-        Response::macro('validationError', function (
-            string $message = 'Validation failed',
-            array $errors = []
-        ) {
+        // Validation Error
+        Response::macro('validationError', function (array $errors = [], string $message = 'Validation failed') {
             return response()->json([
-                'status' => 'error',
+                'status' => 'validationError',
                 'message' => $message,
                 'errors' => $errors,
             ], 422);
         });
 
-        //  No Content
-        Response::macro('noContent', function () {
-            return response()->json(null, 204);
+        // No Content
+        // Response::macro('noContent', function () {
+        //     return response()->json(null, 204);
+        // });
+        // No Content
+        Response::macro('noContent', function (array $data = [], string $message = 'No Content') {
+            return response()->json([
+                'status' => 'success',
+                'message' => $message,
+                'data' => $data,
+            ], 204);
         });
-        
     }
 }
