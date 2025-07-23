@@ -10,14 +10,13 @@
     }
   ],
   "require": {
-    "php": ">=8.1",
-    "illuminate/support": "^9.0|^10.0|^11.0|^12.0" 
-   
+    "php": "^8.1",
+    "illuminate/support": "^9.0|^10.0|^11.0|^12.0"
   },
-    "require-dev": {
-        "orchestra/testbench": "^8.0 || ^9.0 || ^10.0",
-        "phpunit/phpunit": "^9.0 || ^10.0"
-    },
+  "require-dev": {
+    "orchestra/testbench": "^8.0 || ^9.0 || ^10.0",
+    "phpunit/phpunit": "^9.0 || ^10.0"
+  },
   "autoload": {
     "psr-4": {
       "CharlesUwaje\\ResponseMacros\\": "src/"
@@ -27,7 +26,7 @@
     "laravel": {
       "providers": [
         "CharlesUwaje\\ResponseMacros\\Providers\\ResponseMacrosServiceProvider"
-    ]
+      ]
     }
   },
   "minimum-stability": "dev",
