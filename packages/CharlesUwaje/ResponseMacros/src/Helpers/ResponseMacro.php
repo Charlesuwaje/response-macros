@@ -78,10 +78,7 @@ class ResponseMacro
         });
 
         // No Content
-        // Response::macro('noContent', function () {
-        //     return response()->json(null, 204);
-        // });
-        // No Content
+        
         Response::macro('customNoContent', function (array $data = [], string $message = 'No Content') {
             return response()->json([
                 'status' => 'success',
