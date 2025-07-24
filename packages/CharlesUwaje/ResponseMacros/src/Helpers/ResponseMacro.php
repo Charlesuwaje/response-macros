@@ -6,100 +6,8 @@ use Illuminate\Support\Facades\Response;
 
 class ResponseMacro
 {
-//     public static function register(): void
-//     {
-//         //  Success Response
 
-//         // Response::macro('success', function (
-//         //     string $message = 'Success',
-//         //     array $data = [],
-//         //     int $code = 200
-//         // ) {
-//         //     return response()->json([
-//         //         'status' => 'success',
-//         //         'message' => $message,
-//         //         'data' => $data,
-//         //     ], $code);
-//         // });
-//         Response::macro('success', function (array $data = [], string $message = 'Success', int $status = 200) {
-//             return response()->json([
-//                 'status' => 'success',
-//                 'message' => $message,
-//                 'data' => $data,
-//             ], $status);
-//         });
-
-//         // Error Response
-//         Response::macro('error', function (array $data = [], string $message = 'Error', int $status = 400) {
-//             return response()->json([
-//                 'status' => 'error',
-//                 'message' => $message,
-//                 'data' => $data,
-//             ], $status);
-//         });
-
-//         // Created Response
-//         Response::macro('created', function (
-//             string $message = 'Resource created successfully',
-//             array $data = []
-//         ) {
-//             return response()->json([
-//                 'status' => 'success',
-//                 'message' => $message,
-//                 'data' => $data,
-//             ], 201);
-//         });
-
-//         // Unauthorized Response
-//         Response::macro('unauthorized', function (
-//             string $message = 'Unauthorized'
-//         ) {
-//             return response()->json([
-//                 'status' => 'error',
-//                 'message' => $message,
-//             ], 401);
-//         });
-
-//         // Forbidden Response
-//         Response::macro('forbidden', function (
-//             string $message = 'Forbidden'
-//         ) {
-//             return response()->json([
-//                 'status' => 'error',
-//                 'message' => $message,
-//             ], 403);
-//         });
-
-//         //  Not Found Response
-//         Response::macro('notFound', function (
-//             string $message = 'Resource not found'
-//         ) {
-//             return response()->json([
-//                 'status' => 'error',
-//                 'message' => $message,
-//             ], 404);
-//         });
-
-//         //  Validation Error
-//         Response::macro('validationError', function (
-//             string $message = 'Validation failed',
-//             array $errors = []
-//         ) {
-//             return response()->json([
-//                 'status' => 'error',
-//                 'message' => $message,
-//                 'errors' => $errors,
-//             ], 422);
-//         });
-
-//         //  No Content
-//         Response::macro('noContent', function () {
-//             return response()->json(null, 204);
-//         });
-        
-//     }
-// }
-public static function register(): void
+    public static function register(): void
     {
         // Success Response
         Response::macro('success', function (array $data = [], string $message = 'Success', int $status = 200) {
@@ -109,6 +17,8 @@ public static function register(): void
                 'data' => $data,
             ], $status);
         });
+
+
 
         // Error Response
         Response::macro('error', function (array $data = [], string $message = 'Error', int $status = 400) {
@@ -136,7 +46,7 @@ public static function register(): void
                 'data' => $data,
             ], 401);
         });
-        
+
 
         // Forbidden Response
         Response::macro('forbidden', function (array $data = [], string $message = 'Forbidden') {
@@ -146,7 +56,7 @@ public static function register(): void
                 'data' => $data,
             ], 403);
         });
-        
+
 
         // Not Found Response
         Response::macro('notFound', function (array $data = [], string $message = 'Not Found') {
@@ -156,7 +66,7 @@ public static function register(): void
                 'data' => $data,
             ], 404);
         });
-        
+
 
         // Validation Error
         Response::macro('validationError', function (array $errors = [], string $message = 'Validation failed') {
@@ -172,7 +82,7 @@ public static function register(): void
         //     return response()->json(null, 204);
         // });
         // No Content
-        Response::macro('noContent', function (array $data = [], string $message = 'No Content') {
+        Response::macro('customNoContent', function (array $data = [], string $message = 'No Content') {
             return response()->json([
                 'status' => 'success',
                 'message' => $message,

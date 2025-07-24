@@ -13,45 +13,50 @@ class ResponseMacroTest extends TestCase
     }
 
     public function test_it_returns_success_response()
-    {
-        $response = response()->success('Operation successful', ['foo' => 'bar']);
+{
+    $response = response()->success(['foo' => 'bar'], 'Operation successful');
 
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals([
-            'status' => 'success',
-            'message' => 'Operation successful',
-            'data' => ['foo' => 'bar'],
-        ], $response->getData(true));
-    }
+    $this->assertEquals(200, $response->getStatusCode());
+    $this->assertEquals([
+        'status' => 'success',
+        'message' => 'Operation successful',
+        'data' => ['foo' => 'bar'],
+    ], $response->getData(true));
+}
 
-    public function test_it_returns_error_response()
-    {
-        $response = response()->error('Something went wrong', 400, ['field' => 'Invalid']);
+public function test_it_returns_error_response()
+{
+    $response = response()->error(['field' => 'Invalid'], 'Something went wrong', 400);
 
-        $this->assertEquals(400, $response->getStatusCode());
-        $this->assertEquals([
-            'status' => 'error',
-            'message' => 'Something went wrong',
-            'errors' => ['field' => 'Invalid'],
-        ], $response->getData(true));
-    }
+    $this->assertEquals(400, $response->getStatusCode());
+    $this->assertEquals([
+        'status' => 'error',
+        'message' => 'Something went wrong',
+        'data' => ['field' => 'Invalid'],
+    ], $response->getData(true));
+}
 
-    public function test_it_returns_unauthorized_response()
-    {
-        $response = response()->unauthorized('Not allowed');
+public function test_it_returns_unauthorized_response()
+{
+    $response = response()->unauthorized([], 'Not allowed');
 
-        $this->assertEquals(401, $response->getStatusCode());
-        $this->assertEquals([
-            'status' => 'error',
-            'message' => 'Not allowed',
-        ], $response->getData(true));
-    }
+    $this->assertEquals(401, $response->getStatusCode());
+    $this->assertEquals([
+        'status' => 'unauthorized',
+        'message' => 'Not allowed',
+        'data' => [],
+    ], $response->getData(true));
+}
 
-    public function test_it_returns_no_content_response()
-    {
-        $response = response()->noContent();
+public function test_it_returns_no_content_response()
+{
+    $response = response()->customNoContent([], 'No Content');
 
-        $this->assertEquals(204, $response->getStatusCode());
-        $this->assertEmpty($response->getContent());
-    }
+    $this->assertEquals(204, $response->getStatusCode());
+    $this->assertEquals([
+        'status' => 'success',
+        'message' => 'No Content',
+        'data' => [],
+    ], $response->getData(true));
+}
 }
